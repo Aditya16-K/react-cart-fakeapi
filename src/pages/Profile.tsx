@@ -91,7 +91,7 @@ const Profile = () => {
 
           {cart.length > 0 && (
             <>
-              <div className="mt-6 bg-white/20 rounded-lg shadow-lg  flex justify-center gap-150 items-center">
+              <div className="mt-6 bg-white/20 rounded-lg shadow-lg  flex justify-between  items-center">
                 <span className="text-2xl font-bold">Total:</span>
                 <span className="text-3xl font-bold text-blue-600">
                   ${discountedTotal.toFixed(2)}
