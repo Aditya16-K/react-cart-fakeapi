@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: #f0e6ff;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main-padding: 8%;
+}
+
+.main-container {
+  padding-left: var(--main-padding);
+  padding-right: var(--main-padding);
+}
+
+:root {
+  --inner-padding: 5%;
+}
+
+.inner-container {
+  padding-left: var(--inner-padding);
+  padding-right: var(--inner-padding);
+  padding-bottom: var(--inner-padding);
+}
+
+.scroll-container {
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
