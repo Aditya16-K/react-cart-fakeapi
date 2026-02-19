@@ -11,11 +11,11 @@ const Profile = () => {
     0
   );
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(profile.name);
-  const [email, setEmail] = useState(profile.email);
-  const [phone, setPhone] = useState(profile.phone);
-  const [address, setAddress] = useState(profile.address);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [name, setName] = useState<string>(profile.name);
+  const [email, setEmail] = useState<string>(profile.email);
+  const [phone, setPhone] = useState<number>(profile.phone);
+  const [address, setAddress] = useState<string>(profile.address);
 
   const handleSave = () => {
     updateProfile({ name, email, phone, address });
@@ -50,10 +50,10 @@ const Profile = () => {
                 placeholder="Email"
               />
               <input
-                type="text"
+                type="number"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-3 py-2 rounded border border-gray-300"
+                onChange={(e) => setPhone(Number(e.target.value) || 0)}
+                className="w-full  py-2 rounded border border-gray-300"
                 placeholder="Phone"
               />
               <input
@@ -85,12 +85,12 @@ const Profile = () => {
                 {profile.name}
               </h2>
               <p className="text-gray-600">{profile.email}</p>
-              <p className="text-gray-600">{profile.phone}</p>
+              <p className="text-gray-600">+977 {profile.phone}</p>
               <p className="text-gray-600 text-center">{profile.address}</p>
 
               <button
                 onClick={() => setIsEditing(true)}
-                className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition cursor-pointer"
+                className="mt-4 w-full h-10 bg-blue-600 hover:bg-blue-700 text-white font-bold  rounded-lg transition cursor-pointer"
               >
                 Edit Profile
               </button>
@@ -98,18 +98,18 @@ const Profile = () => {
           )}
         </div>
 
-        {/* Cart Section */}
+        {/* cart Section */}
         <div className="lg:col-span-2 border border-gray-300 rounded-xl flex flex-col gap-4 p-5">
           <h2 className="text-2xl font-bold text-gray-800 mb-4 underline">
             Your Cart Items
           </h2>
 
-          {/* Product List */}
-          <div className="flex-1 overflow-y-auto max-h-[450px] pr-2 scroll-container">
+          {/* product List */}
+          <div className="flex-1 overflow-y-auto max-h-112.5 pr-2 scroll-container">
             <div className="flex flex-col gap-5">
               {cart.length === 0 ? (
                 <div className="bg-white rounded-lg shadow-lg p-10 text-center text-gray-500">
-                  Your cart is empty
+                  your cart is empty
                 </div>
               ) : (
                 cart.map((item) => {
@@ -163,7 +163,7 @@ const Profile = () => {
               </div>
 
               <Link to="/cart">
-                <button className="mt-4 h-8 w-50 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition">
+                <button className="mt-4 h-8 w-50 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition cursor-pointer">
                   Go to cart / Checkout
                 </button>
               </Link>

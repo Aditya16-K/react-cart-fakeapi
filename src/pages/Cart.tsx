@@ -88,14 +88,14 @@ const Cart = () => {
                     <button
                       onClick={() => handleDelete(item.id)}
                       disabled={deletingId === item.id}
-                      className="flex items-center w-25 justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg px-4 py-2 transition duration-200 disabled:opacity-50"
+                      className="flex items-center w-25 justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg  transition duration-200 cursor-pointer  "
                     >
                       <FaTrash />
                       {deletingId === item.id ? 'Removing...' : 'Remove'}
                     </button>
 
                     <Link to={`/product/${item.id}`}>
-                      <button className="flex w-25 items-center justify-center gap-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-4 py-2 transition duration-200">
+                      <button className="flex w-25 items-center justify-center gap-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200 cursor-pointer">
                         <FaEye /> Details
                       </button>
                     </Link>
@@ -143,12 +143,12 @@ const Cart = () => {
 
             {/* Buttons */}
             <div className="flex flex-col gap-3 mt-2">
-              <button className="w-50 h-10 md:h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition duration-200">
+              <button className="w-50 h-10 md:h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition duration-200 cursor-pointer">
                 Proceed to Checkout
               </button>
 
               <Link to="/">
-                <button className="w-50 h-10 md:h-12 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-lg transition duration-200">
+                <button className="w-50 h-10 md:h-12 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-lg transition duration-200 cursor-pointer">
                   Continue Shopping
                 </button>
               </Link>

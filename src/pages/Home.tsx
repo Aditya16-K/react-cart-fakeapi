@@ -10,7 +10,7 @@ const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const { searchQuery, category } = useContext(StoreContext);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchProducts = async () => {

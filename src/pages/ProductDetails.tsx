@@ -8,7 +8,7 @@ import { ShoppingCart, Star } from 'lucide-react';
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const { addToCart } = useContext(StoreContext);
@@ -96,10 +96,10 @@ const ProductDetails = () => {
           <div className="flex items-center  justify-between">
             <div className="flex  flex-col">
               <p className="text-3xl sm:text-4xl font-bold text-green-500">
-                {discountPrice}
+                ${discountPrice}
               </p>
               <p className="text-xs sm:text-sm line-through text-gray-400">
-                {product.price}
+                ${product.price}
               </p>
             </div>
 

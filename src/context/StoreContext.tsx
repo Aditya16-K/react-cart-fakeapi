@@ -1,12 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from 'react';
-import type { Product } from '../types/Product';
-
-interface Profile {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
+import type { Product, Profile } from '../types/Product';
 
 interface StoreContextType {
   cart: Product[];
@@ -35,7 +28,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('all');
 
-  //  Profile in data store in the local storage
   const [profile, setProfile] = useState<Profile>(
     JSON.parse(localStorage.getItem('profile') || '{}') || {
       name: 'User',
@@ -45,12 +37,10 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     }
   );
 
-  // Save cart to localStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  // Save profile to localStorage
   useEffect(() => {
     localStorage.setItem('profile', JSON.stringify(profile));
   }, [profile]);

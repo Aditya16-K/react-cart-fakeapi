@@ -10,3 +10,10 @@ export interface Product {
     count: number;
   };
 }
+
+export type Profile = {
+  name: string;
+  email: string;
+  phone: number;
+  address: string;
+};
