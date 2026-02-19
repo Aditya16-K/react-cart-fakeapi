@@ -33,7 +33,7 @@ const Home = () => {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <p className="text-lg font-medium animate-pulse">
-          Loading product details...
+          Loading product's...
         </p>
       </div>
     );
@@ -53,7 +53,7 @@ const Home = () => {
 
       if (category === 'fashion') {
         return (
-          p.category === "men's clothing" || p.category === "women's clothing"
+          p.category === "mes's clothing" || p.category === "women's clothing"
         );
       } else if (p.category === category) {
         return true;

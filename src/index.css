@@ -34,6 +34,23 @@ body {
   padding-bottom: var(--inner-padding);
 }
 
+:root {
+  --btn-padding: 3%;
+}
+
+.btn-container {
+  padding-right: var(--btn-padding);
+}
+
+:root {
+  --top-bottom: 5%;
+}
+
+.top-bottom {
+  padding-top: var(--top-bottom);
+  padding-bottom: var(--top-bottom);
+}
+
 .scroll-container {
   overflow-y: auto;
   scrollbar-width: none;

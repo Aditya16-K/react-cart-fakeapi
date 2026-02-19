@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
-  const { cart } = useContext(StoreContext);
+  const { cart, profile, updateProfile } = useContext(StoreContext);
   const discountPercent = 15;
 
   const discountedTotal = cart.reduce(
@@ -11,27 +11,91 @@ const Profile = () => {
     0
   );
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState(profile.name);
+  const [email, setEmail] = useState(profile.email);
+  const [phone, setPhone] = useState(profile.phone);
+  const [address, setAddress] = useState(profile.address);
+
+  const handleSave = () => {
+    updateProfile({ name, email, phone, address });
+    setIsEditing(false);
+  };
+
   return (
     <div className="main-container py-10 px-4 lg:px-16">
-      <div className="grid grid-cols-1  items-center justify-center lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
         {/* Profile Section */}
-        <div className="lg:col-span-1 bg-gray-100 rounded-xl shadow-lg p-8 flex flex-col items-center justify-around gap-6 h-105">
+        <div className="lg:col-span-1 bg-gray-100 rounded-xl top-bottom shadow-lg flex flex-col items-center gap-6 h-105 p-6">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzisou65VUlgp7nHT71Kl-390RZOUWR5UAA&s"
+            src="https://static.vecteezy.com/ti/gratis-vector/p1/12210707-arbeider-medewerker-zakenman-avatar-profiel-icoon-vector.jpg"
             alt="Profile"
             className="h-32 w-32 rounded-full object-cover border-2 border-blue-500"
           />
 
-          <h2 className="text-xl font-bold text-gray-800">Sofia Stark</h2>
-          <p className="text-gray-600">sofia123@gmail.com</p>
-          <p className="text-gray-600">+1 987 654 321</p>
-          <p className="text-gray-600 text-center">
-            123 Main Street, New York, NY, USA
-          </p>
+          {isEditing ? (
+            <div className="w-full flex flex-col gap-3">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3 py-2 rounded border border-gray-300"
+                placeholder="Full Name"
+              />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 rounded border border-gray-300"
+                placeholder="Email"
+              />
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full px-3 py-2 rounded border border-gray-300"
+                placeholder="Phone"
+              />
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full px-3 py-2 rounded border border-gray-300"
+                placeholder="Address"
+              />
 
-          <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition cursor-pointer">
-            Edit Profile
-          </button>
+              <div className="flex gap-2 w-full mt-2">
+                <button
+                  onClick={handleSave}
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 rounded-lg transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <h2 className="text-xl font-bold text-gray-800">
+                {profile.name}
+              </h2>
+              <p className="text-gray-600">{profile.email}</p>
+              <p className="text-gray-600">{profile.phone}</p>
+              <p className="text-gray-600 text-center">{profile.address}</p>
+
+              <button
+                onClick={() => setIsEditing(true)}
+                className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition cursor-pointer"
+              >
+                Edit Profile
+              </button>
+            </>
+          )}
         </div>
 
         {/* Cart Section */}
@@ -40,7 +104,7 @@ const Profile = () => {
             Your Cart Items
           </h2>
 
-          {/* Scrollable Product List */}
+          {/* Product List */}
           <div className="flex-1 overflow-y-auto max-h-[450px] pr-2 scroll-container">
             <div className="flex flex-col gap-5">
               {cart.length === 0 ? (
@@ -63,15 +127,15 @@ const Profile = () => {
                         className="h-28 w-28 object-contain rounded-lg"
                       />
 
-                      <div className="flex-1">
+                      <div className="flex-1 inner-container">
                         <Link to={`/product/${item.id}`}>
-                          <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2 hover:text-blue-600 transition cursor-pointer">
+                          <h3 className="font-semibold text-lg  text-gray-800 mb-2 line-clamp-2 hover:text-blue-600 transition cursor-pointer">
                             {item.title}
                           </h3>
                         </Link>
 
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl font-bold text-red-600">
+                        <div className="flex items-center gap-3 ">
+                          <span className="text-xl font-bold  text-red-600">
                             ${discountedPrice.toFixed(2)}
                           </span>
                           <span className="line-through text-gray-400 text-sm">
@@ -91,7 +155,7 @@ const Profile = () => {
 
           {cart.length > 0 && (
             <>
-              <div className="mt-6 bg-white/20 rounded-lg shadow-lg  flex justify-between  items-center">
+              <div className="mt-6 bg-white/20 rounded-lg shadow-lg flex justify-between items-center">
                 <span className="text-2xl font-bold">Total:</span>
                 <span className="text-3xl font-bold text-blue-600">
                   ${discountedTotal.toFixed(2)}
@@ -100,7 +164,7 @@ const Profile = () => {
 
               <Link to="/cart">
                 <button className="mt-4 h-8 w-50 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition">
-                  Go to Cart / Checkout
+                  Go to cart / Checkout
                 </button>
               </Link>
             </>
