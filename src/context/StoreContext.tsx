@@ -30,10 +30,10 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   const [profile, setProfile] = useState<Profile>(
     JSON.parse(localStorage.getItem('profile') || '{}') || {
-      name: 'User',
-      email: 'example@gmail.com',
-      phone: '+1 123 456 789',
-      address: '123 Main Street, New York, NY, USA',
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
     }
   );
 
