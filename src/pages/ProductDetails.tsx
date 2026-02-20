@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import type { Product } from '../types/Product';
 import { StoreContext } from '../context/StoreContext';
 import { ShoppingCart, Star } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -59,7 +59,7 @@ const ProductDetails = () => {
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-64 sm:h-80 md:h-[450px] object-contain transition-transform duration-500 hover:scale-105"
+            className="w-full h-64 sm:h-80 `md:h-[450px]` object-contain transition-transform duration-500 hover:scale-105"
           />
         </div>
 
@@ -103,7 +103,7 @@ const ProductDetails = () => {
               </p>
             </div>
 
-            <span className="text-green-700 bg-green-50 px-3 h-8 w-20 rounded-xl text-xs font-bold uppercase flex items-center justify-center items-center">
+            <span className="text-green-700 bg-green-50 px-3 h-8 w-20 rounded-xl text-xs font-bold uppercase flex  justify-center items-center">
               In Stock
             </span>
           </div>
