@@ -43,7 +43,7 @@ const ProductDetails = () => {
   if (error)
     return (
       <div className="main-container py-20 text-center">
-        <p className="text-red-600 font-semibold">{error}</p>
+        <p className="text-red-700 font-semibold">{error}</p>
       </div>
     );
 
